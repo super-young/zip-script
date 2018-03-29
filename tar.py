@@ -8,14 +8,19 @@ def zip(path,note=False):
     targetDirName = path.split('/')[-1]
 
     tagNum = 0
+    max=0
     for entry in os.scandir(os.path.dirname(path)):
         if entry.name.startswith(targetDirName+"-"+date):
             tagWithExt = entry.name.split("-")[-1]
             tag = tagWithExt.split(".")[0]
             tagNum = int(tag[1:])
-    tagNum +=1
-    tag = "v"+str(tagNum)
+            if tagNum>max:
+                max=tagNum
+    max +=1
+    print(max)
+    tag = "v"+str(max)
     name = "{}-{}-{}.zip".format(path.split('/')[-1],date+"-"+t,tag)
+
   
     command = "zip -r "+name +" "+format(path.split('/')[-1])
 
