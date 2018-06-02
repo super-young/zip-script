@@ -21,9 +21,7 @@ def zip(path,note=False):
     tag = "v"+str(max)
     name = "{}-{}-{}.zip".format(path.split('/')[-1],date+"-"+t,tag)
 
-  
-    command = "zip -r "+name +" "+format(path.split('/')[-1])
-
+    command = "zip -r "+name +" "+format(path.split('/')[-1]) + " -x *.git* *.idea*"
     p = subprocess.run(command.split(" "),cwd=os.path.dirname(path))
 if __name__ == '__main__':
     fire.Fire()
